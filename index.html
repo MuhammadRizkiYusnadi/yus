@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .profile {
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        .profile img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .profile h1 {
+            font-size: 2.5rem;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .profile p {
+            font-size: 1.2rem;
+            margin: 0;
+            color: #666;
+        }
+
+        .projects {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+        }
+
+        .project {
+            width: 30%;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .project img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project:hover {
+            transform: translateY(-5px);
+        }
+
+        .project h2 {
+            font-size: 1.5rem;
+            margin: 15px 0;
+            color: #333;
+        }
+
+        .project a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-bottom: 20px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .project a:hover {
+            background-color: #555;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            background-color: #333;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <section class="profile">
+            <img src="URL_FOTO.jpg" alt="URL_FOTO.jpg">
+            <h1>Muhammad Rizki Yusnadi</h1>
+            <p>Saya Seorang Mahasiswa Teknik Informatika dari Universitas Pamulang.
+
+                Pekerjaan saya adalah membuat Project sederhana seperti from login, portofolio, kalkulator. Dengan membuat project sederhana seperti ini, saya dapat melakukan proses dasar yang menarik. Tujuan saya adalah menyampaikan pesan dan identitas dengan cara yang paling kreatif.</p>
+        </section>
+
+        <section class="projects">
+            <div class="project">
+                <img src="URL_GAMBAR_PROJECT.jpg" alt="URL_GAMBAR_PROJECT">
+                <h2>Project 1</h2>
+                <a href="formlogin.html" target="_blank">Form Login</a>
+            </div>
+
+            <div class="project">
+                <img src="URL_GAMBAR_PROJECT2.jpg" alt="Kalkulator">
+                <h2>Project 2</h2>
+                <a href="kalkulator.html" target="_blank">Kalkulator</a>
+            </div>
+            <div class="project">
+                <img src="URL_GAMBAR_PROJECT3.jpg" alt="Dashboard">
+                <h2>Project 3</h2>
+                <a href="dashboard.html" target="_blank">Dashboard</a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Muhammad Rizki Yusnadi. All Rights Reserved.</p>
+    </footer>
+</body>
+
+</html>

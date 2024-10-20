@@ -1,0 +1,148 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Register</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f4f8;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+        .container h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333333;
+        }
+        .container input[type="text"],
+        .container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .container button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            color: #ffffff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .container .login-button {
+            background-color: #28a745;
+        }
+        .container .register-button {
+            background-color: #007bff;
+        }
+        .container .toggle-button {
+            background-color: #6c757d;
+        }
+        .welcome-container {
+            display: none;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+        .welcome-container h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="login-container">
+        <h2>Login</h2>
+        <input type="text" id="login-username" placeholder="Enter Username">
+        <input type="password" id="login-password" placeholder="Enter Password">
+        <button class="login-button" onclick="login()">Login</button>
+        <button class="toggle-button" onclick="toggleForm()">Register</button>
+    </div>
+
+    <div class="container" id="register-container" style="display: none;">
+        <h2>Register</h2>
+        <input type="text" id="register-username" placeholder="Enter Username">
+        <input type="password" id="register-password" placeholder="Enter Password">
+        <button class="register-button" onclick="register()">Register</button>
+        <button class="toggle-button" onclick="toggleForm()">Login</button>
+    </div>
+
+    <div class="welcome-container" id="welcome-container">
+        <h2>Welcome!</h2>
+        <p>You have successfully logged in.</p>
+    </div>
+
+    <script>
+        function toggleForm() {
+            const loginContainer = document.getElementById('login-container');
+            const registerContainer = document.getElementById('register-container');
+            if (loginContainer.style.display === 'none') {
+                loginContainer.style.display = 'block';
+                registerContainer.style.display = 'none';
+            } else {
+                loginContainer.style.display = 'none';
+                registerContainer.style.display = 'block';
+            }
+        }
+
+        function register() {
+            const username = document.getElementById('register-username').value;
+            const password = document.getElementById('register-password').value;
+
+            if (username && password) {
+                localStorage.setItem('username', username);
+                localStorage.setItem('password', password);
+                alert('Registration successful!');
+                toggleForm();
+            } else {
+                alert('Please fill in all fields.');
+            }
+        }
+
+        function login() {
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+
+            const storedUsername = localStorage.getItem('username');
+            const storedPassword = localStorage.getItem('password');
+
+            if (username === storedUsername && password === storedPassword) {
+                alert('Login successful!');
+                showWelcomePage();
+            } else {
+                alert('Invalid username or password.');
+            }
+        }
+
+        function showWelcomePage() {
+            const loginContainer = document.getElementById('login-container');
+            const registerContainer = document.getElementById('register-container');
+            const welcomeContainer = document.getElementById('welcome-container');
+
+            loginContainer.style.display = 'none';
+            registerContainer.style.display = 'none';
+            welcomeContainer.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 80%;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .stat {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            width: 30%;
+            text-align: center;
+        }
+        .stat h3 {
+            font-size: 18px;
+            margin: 0 0 10px 0;
+        }
+        .stat p {
+            font-size: 24px;
+            margin: 0;
+        }
+        .content h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .post {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .post h3 {
+            font-size: 18px;
+            margin: 0 0 10px 0;
+        }
+        .post p {
+            font-size: 14px;
+            margin: 0 0 5px 0;
+        }
+        .post .date {
+            font-size: 12px;
+            color: gray;
+        }
+        .comment-box {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .comment-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .comments {
+            margin-top: 20px;
+        }
+        .comments h4 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .comments ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .comments ul li {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        .comments ul li .date {
+            font-size: 12px;
+            color: gray;
+        }
+        .new-post {
+            margin-top: 20px;
+        }
+        .new-post input, .new-post textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .new-post button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+        <div class="content">
+            <h2>Postingan Terbaru</h2>
+            <div class="post">
+                <h3>Testimoni</h3>
+                <p>Weh kasih testimoni website nya kurang apaan</p>
+                <p class="date" id="postDate"></p>
+                <textarea class="comment-box" id="commentBox" placeholder="Tulis komentar..."></textarea>
+                <button class="comment-button" onclick="addComment()">Kirim Komentar</button>
+            </div>
+            <div class="comments">
+                <h4>Komentar:</h4>
+                <ul id="commentList">
+                    <li>Cukup Sekian terimakasih - <span class="date">19 Oct 2024, 06:45</span></li>
+                    <li>Ufah bagus der aman 🙏 - <span class="date">19 Oct 2024, 06:53</span></li>
+                    <li>Wah sangat briliat sekali - <span class="date">19 Oct 2024, 07:04</span></li>
+                    <li>Keren kak - <span class="date">19 Oct 2024, 08:06</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="new-post">
+            <h2>Tambah Postingan Baru</h2>
+            <input type="text" id="newPostTitle" placeholder="Judul Postingan">
+            <textarea id="newPostContent" placeholder="Isi Postingan"></textarea>
+            <button onclick="addPost()">Tambah Postingan</button>
+        </div>
+        <div class="stats">
+            <div class="stat">
+                <h3>Postingan</h3>
+                <p id="postCount">0</p>
+            </div>
+            <div class="stat">
+                <h3>Komentar</h3>
+                <p id="commentCount">0</p>
+            </div>
+            <div class="stat">
+                <h3>Pengunjung</h3>
+                <p id="visitorCount">0</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        let postCount = 1;
+        let commentCount = 4;
+        let visitorCount = 123;
+
+        document.getElementById('postCount').innerText = postCount;
+        document.getElementById('commentCount').innerText = commentCount;
+        document.getElementById('visitorCount').innerText = visitorCount;
+
+        function addComment() {
+            var commentBox = document.getElementById('commentBox');
+            var commentList = document.getElementById('commentList');
+            var commentText = commentBox.value.trim();
+            if (commentText !== "") {
+                var currentDate = new Date();
+                var dateString = currentDate.toLocaleDateString('en-GB') + ', ' + currentDate.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+                var newComment = document.createElement('li');
+                newComment.innerHTML = commentText + ' - <span class="date">' + dateString + '</span>';
+                commentList.appendChild(newComment);
+                commentBox.value = "";
+                commentCount++;
+                document.getElementById('commentCount').innerText = commentCount;
+
+                // Remove oldest comment if more than 4
+                if (commentList.children.length > 4) {
+                    commentList.removeChild(commentList.children[0]);
+                }
+            }
+        }
+
+        function addPost() {
+            var newPostTitle = document.getElementById('newPostTitle').value.trim();
+            var newPostContent = document.getElementById('newPostContent').value.trim();
+            if (newPostTitle !== "" && newPostContent !== "") {
+                var currentDate = new Date();
+                var dateString = currentDate.toLocaleDateString('en-GB') + ', ' + currentDate.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+                var newPost = document.createElement('div');
+                newPost.className = 'post';
+                newPost.innerHTML = '<h3>' + newPostTitle + '</h3><p>' + newPostContent + '</p><p class="date">' + dateString + '</p>';
+                document.querySelector('.content').appendChild(newPost);
+                document.getElementById('newPostTitle').value = "";
+                document.getElementById('newPostContent').value = "";
+                postCount++;
+                document.getElementById('postCount').innerText = postCount;
+            }
+        }
+
+        function updatePostDate() {
+            var currentDate = new Date();
+            var dateString = currentDate.toLocaleDateString('en-GB') + ', ' + currentDate.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+            document.getElementById('postDate').innerText = dateString;
+        }
+
+        setInterval(updatePostDate, 1000);
+    </script>
+</body>
+</html>
